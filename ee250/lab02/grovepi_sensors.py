@@ -23,14 +23,24 @@ sys.path.append('../../Software/Python/')
 sys.path.append('../../Software/Python/grove_rgb_lcd')
 
 import grovepi
-from grove_rgb_lcd import *
+import time
+from grove_rgb_lcd import * #needed for LCD screen
 
 """This if-statement checks if you are running this python file directly. That 
 is, if you run `python3 grovepi_sensors.py` in terminal, this if-statement will 
 be true"""
-if __name__ == '__main__':
-    PORT = 4    # D4
 
+"""Note: the syntax, structure, and libraries for this code are sourced from 
+the GrovePi documentation. """
+
+
+if __name__ == '__main__':
+	#Variables
+    UPORT = 4   # D4, where the Ultrasonic Ranger is connected
+    APORT = 0	#A0, where the rotary analog sensor is connected
+
+	grovepi.set_bus("RPI_1") #sets I2C to use the hardware bus
+	grovepi.pinMode(APORT,"INPUT")
     setText("Hello world! test")
     setRGB(0,128,64)
     
@@ -39,4 +49,13 @@ if __name__ == '__main__':
         #sleep for a reasonable time of 200ms between each iteration.
         time.sleep(0.2)
 
-        print(grovepi.ultrasonicRead(PORT))
+        #find the value 
+        print(grovepi.ultrasonicRead(UPORT))
+#Function to calculate the threshold value based on rotation
+def threshold_calc(sensorData):
+	adcRef= 5	 #Analog to digital conversion reference voltage
+    groveVcc= 5  #V high of the grove 
+    fullRot= 300 #300 degrees is the full rotation of the rotary angle
+	voltage= round( (float)(sensorData) *adcRef/1023,2)
+	threshold= round( (voltage*fullRot) /groveVcc, 2)
+	return threshold
