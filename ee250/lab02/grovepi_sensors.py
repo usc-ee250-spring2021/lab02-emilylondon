@@ -45,8 +45,14 @@ def threshold_calc(sensorData):
 	fullRot= 300 #300 degrees is the full rotation of the rotary angle
 	arb_max=50 #arbitary max distance away an object will be for my purposes (50 cm)
 	voltage= round( (float)(sensorData) *adcRef/1023,2)
+
+	""" Additional code for more sensible values, but rubric says range should be out 
+	of 1023 so ignore this
 	degree= round( (voltage*fullRot) /groveVcc, 2)
 	threshold=round((degree/fullRot)*50,2)
+	"""
+
+	threshold=voltage
 	return threshold
 
 if __name__ == '__main__':
@@ -61,8 +67,8 @@ if __name__ == '__main__':
         distance=grovepi.ultrasonicRead(UPORT)
 
         #Setting realistic max distance for this exercise to 50 cm
-        if distance>50:
-        	distance=50
+        if distance>517:
+        	distance=517
 
         #Compare threshold to distance
         if threshold >= distance:
