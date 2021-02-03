@@ -39,23 +39,6 @@ grovepi.set_bus("RPI_1") #sets I2C to use the hardware bus
 grovepi.pinMode(APORT,"INPUT")
 setRGB(0,255,0)
 
-#Function to calculate the threshold value based on rotation
-def threshold_calc(sensorData):
-	adcRef= 5	 #Analog to digital conversion reference voltage
-	groveVcc= 5  #V high of the grove 
-	fullRot= 300 #300 degrees is the full rotation of the rotary angle
-	arb_max=50 #arbitary max distance away an object will be for my purposes (50 cm)
-	voltage= round( (float)(sensorData) ,2)
-
-	""" Additional code for more sensible values, but rubric says range should be out 
-	of 1023 so ignore this
-	degree= round( (voltage*fullRot) /groveVcc, 2)
-	threshold=round((degree/fullRot)*50,2)
-	"""
-
-	threshold=voltage
-	return threshold
-
 if __name__ == '__main__':
     
     while True:
@@ -64,7 +47,7 @@ if __name__ == '__main__':
         time.sleep(0.2)
 
         #Collect readings for sensor data
-        threshold=threshold_calc(grovepi.analogRead(APORT))
+        threshold=grovepi.analogRead(APORT)
         distance=grovepi.ultrasonicRead(UPORT)
 
         #Setting realistic max distance for this exercise to 50 cm
