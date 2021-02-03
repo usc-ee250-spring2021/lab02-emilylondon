@@ -32,16 +32,13 @@ be true"""
 """Note: the syntax, structure, and libraries for this code are sourced from 
 the GrovePi documentation. """
 
+grovepi.set_bus("RPI_1") #sets I2C to use the hardware bus
+grovepi.pinMode(APORT,"INPUT")
 
 if __name__ == '__main__':
 	#Variables
     UPORT = 4   # D4, where the Ultrasonic Ranger is connected
     APORT = 0	#A0, where the rotary analog sensor is connected
-
-	grovepi.set_bus("RPI_1") #sets I2C to use the hardware bus
-	grovepi.pinMode(APORT,"INPUT")
-    setText("Hello world! test")
-    setRGB(0,128,64)
     
     while True:
         #So we do not poll the sensors too quickly which may introduce noise,
