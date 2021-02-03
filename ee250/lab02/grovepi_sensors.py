@@ -23,7 +23,6 @@ sys.path.append('../../Software/Python/')
 sys.path.append('../../Software/Python/grove_rgb_lcd')
 
 import grovepi
-import time
 from grove_rgb_lcd import * #needed for LCD screen
 
 """This if-statement checks if you are running this python file directly. That 
@@ -48,7 +47,11 @@ if __name__ == '__main__':
         #So we do not poll the sensors too quickly which may introduce noise,
         #sleep for a reasonable time of 200ms between each iteration.
         time.sleep(0.2)
+        threshold=threshold_calc(grovepi.analogRead(APORT))
+        distance=grovepi.ultrasonicRead(UPORT)
+        setText(str(threshold)+"\n"+str(distance))
 
+        	
         #find the value 
         print(grovepi.ultrasonicRead(UPORT))
 #Function to calculate the threshold value based on rotation
