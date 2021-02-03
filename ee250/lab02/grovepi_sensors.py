@@ -66,4 +66,4 @@ if __name__ == '__main__':
         	setRGB(255,0,0)
         else:
         	setText_norefresh(str(threshold)+"\n"+str(distance))
-        	set RGB(0,255,0)
+        	setRGB(0,255,0)
