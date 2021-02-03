@@ -63,11 +63,11 @@ if __name__ == '__main__':
         #Setting realistic max distance for this exercise to 50 cm
         if distance>50:
         	distance=50
-        
+
         #Compare threshold to distance
         if threshold >= distance:
-        	setText_norefresh(str(threshold)+"  OBJ PRES\n" + str(distance))
+        	setText_norefresh(str(threshold)+"cm  OBJ PRES\n" + str(distance)+"cm")
         	setRGB(255,0,0)
         else:
-        	setText_norefresh(str(threshold)+"          \n"+str(distance))
+        	setText_norefresh(str(threshold)+"cm          \n"+str(distance)+"cm")
         	setRGB(0,255,0)
