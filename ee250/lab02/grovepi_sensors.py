@@ -51,11 +51,12 @@ if __name__ == '__main__':
         	
         #find the value 
         print(grovepi.ultrasonicRead(UPORT))
+
 #Function to calculate the threshold value based on rotation
 def threshold_calc(sensorData):
 	adcRef= 5	 #Analog to digital conversion reference voltage
-    groveVcc= 5  #V high of the grove 
-    fullRot= 300 #300 degrees is the full rotation of the rotary angle
+	groveVcc= 5  #V high of the grove 
+	fullRot= 300 #300 degrees is the full rotation of the rotary angle
 	voltage= round( (float)(sensorData) *adcRef/1023,2)
 	threshold= round( (voltage*fullRot) /groveVcc, 2)
 	return threshold
