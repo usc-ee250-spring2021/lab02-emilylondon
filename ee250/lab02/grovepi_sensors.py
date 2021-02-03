@@ -59,5 +59,5 @@ if __name__ == '__main__':
         	setText_norefresh(str(threshold)+"cm  OBJ PRES\n" + str(distance)+"cm")
         	setRGB(255,0,0)
         else:
-        	setText_norefresh(str(threshold)+"cm               \n"+str(distance)+"cm")
+        	setText_norefresh(str(threshold)+"cm            \n"+str(distance)+"cm")
         	setRGB(0,255,0)
