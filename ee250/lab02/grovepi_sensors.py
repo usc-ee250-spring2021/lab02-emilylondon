@@ -32,10 +32,11 @@ be true"""
 """Note: the syntax, structure, and libraries for this code are sourced from 
 the GrovePi documentation. """
 #Variables
-UPORT = 4   # D4, where the Ultrasonic Ranger is connected
+UPORT = 2   # D4, where the Ultrasonic Ranger is connected
 APORT = 0	#A0, where the rotary analog sensor is connected
 grovepi.set_bus("RPI_1") #sets I2C to use the hardware bus
 grovepi.pinMode(APORT,"INPUT")
+setRGB(0,255,0)
 
 #Function to calculate the threshold value based on rotation
 def threshold_calc(sensorData):
