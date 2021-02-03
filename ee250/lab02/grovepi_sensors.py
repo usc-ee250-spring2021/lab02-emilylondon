@@ -45,7 +45,7 @@ def threshold_calc(sensorData):
 	groveVcc= 5  #V high of the grove 
 	fullRot= 300 #300 degrees is the full rotation of the rotary angle
 	arb_max=50 #arbitary max distance away an object will be for my purposes (50 cm)
-	voltage= round( (float)(sensorData) *adcRef/1023,2)
+	voltage= round( (float)(sensorData) ,2)
 
 	""" Additional code for more sensible values, but rubric says range should be out 
 	of 1023 so ignore this
