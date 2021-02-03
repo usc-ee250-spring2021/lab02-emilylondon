@@ -65,5 +65,5 @@ if __name__ == '__main__':
         	setText_norefresh(str(threshold)+"  OBJ PRES\n" + str(distance))
         	setRGB(255,0,0)
         else:
-        	setText_norefresh(str(threshold)+"\n"+str(distance))
+        	setText_norefresh(str(threshold)+"          \n"+str(distance))
         	setRGB(0,255,0)
