@@ -43,8 +43,10 @@ def threshold_calc(sensorData):
 	adcRef= 5	 #Analog to digital conversion reference voltage
 	groveVcc= 5  #V high of the grove 
 	fullRot= 300 #300 degrees is the full rotation of the rotary angle
+	arb_max=50 #arbitary max distance away an object will be for my purposes (50 cm)
 	voltage= round( (float)(sensorData) *adcRef/1023,2)
-	threshold= round( (voltage*fullRot) /groveVcc, 2)
+	degree= round( (voltage*fullRot) /groveVcc, 2)
+	threshold=round((degree/fullRot)*50,2)
 	return threshold
 
 if __name__ == '__main__':
@@ -53,10 +55,15 @@ if __name__ == '__main__':
         #So we do not poll the sensors too quickly which may introduce noise,
         #sleep for a reasonable time of 200ms between each iteration.
         time.sleep(0.2)
+
+        #Collect readings for sensor data
         threshold=threshold_calc(grovepi.analogRead(APORT))
         distance=grovepi.ultrasonicRead(UPORT)
-        setText_norefresh(str(threshold)+"\n"+str(distance))
 
-        	
-        #find the value 
-        print(grovepi.ultrasonicRead(UPORT))
+        #Compare threshold to distance
+        if threshold >= distance:
+        	setText_norefresh(str(threshold)+"  OBJ PRES\n" + str(distance))
+        	setRGB(255,0,0)
+        else
+        	setText_norefresh(str(threshold)+"\n"+str(distance))
+        	set RGB(0,255,0)
