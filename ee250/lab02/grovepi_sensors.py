@@ -55,7 +55,7 @@ if __name__ == '__main__':
         time.sleep(0.2)
         threshold=threshold_calc(grovepi.analogRead(APORT))
         distance=grovepi.ultrasonicRead(UPORT)
-        setText(str(threshold)+"\n"+str(distance))
+        setText_norefresh(str(threshold)+"\n"+str(distance))
 
         	
         #find the value 
