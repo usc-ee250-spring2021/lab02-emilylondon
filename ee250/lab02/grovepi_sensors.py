@@ -37,6 +37,15 @@ APORT = 0	#A0, where the rotary analog sensor is connected
 grovepi.set_bus("RPI_1") #sets I2C to use the hardware bus
 grovepi.pinMode(APORT,"INPUT")
 
+#Function to calculate the threshold value based on rotation
+def threshold_calc(sensorData):
+	adcRef= 5	 #Analog to digital conversion reference voltage
+	groveVcc= 5  #V high of the grove 
+	fullRot= 300 #300 degrees is the full rotation of the rotary angle
+	voltage= round( (float)(sensorData) *adcRef/1023,2)
+	threshold= round( (voltage*fullRot) /groveVcc, 2)
+	return threshold
+
 if __name__ == '__main__':
     
     while True:
@@ -50,12 +59,3 @@ if __name__ == '__main__':
         	
         #find the value 
         print(grovepi.ultrasonicRead(UPORT))
-
-#Function to calculate the threshold value based on rotation
-def threshold_calc(sensorData):
-	adcRef= 5	 #Analog to digital conversion reference voltage
-	groveVcc= 5  #V high of the grove 
-	fullRot= 300 #300 degrees is the full rotation of the rotary angle
-	voltage= round( (float)(sensorData) *adcRef/1023,2)
-	threshold= round( (voltage*fullRot) /groveVcc, 2)
-	return threshold
