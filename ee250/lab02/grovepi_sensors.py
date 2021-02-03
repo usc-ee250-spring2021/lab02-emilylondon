@@ -60,6 +60,10 @@ if __name__ == '__main__':
         threshold=threshold_calc(grovepi.analogRead(APORT))
         distance=grovepi.ultrasonicRead(UPORT)
 
+        #Setting realistic max distance for this exercise to 50 cm
+        if distance>50:
+        	distance=50
+        
         #Compare threshold to distance
         if threshold >= distance:
         	setText_norefresh(str(threshold)+"  OBJ PRES\n" + str(distance))
